@@ -10,6 +10,7 @@ def home_page_view(request, *args, **kwargs):
     page_qs = PageVisit.objects.filter(path= request.path)  # qs -> query set
 
     my_title = "My Page"
+    html_template = "home.html"
 
     my_context = {
         "page_title": my_title,
@@ -18,6 +19,5 @@ def home_page_view(request, *args, **kwargs):
         "total_visit_count": qs.count()
     }
 
-    html_template = "home.html"
     PageVisit.objects.create(path=request.path)
     return render(request, html_template, my_context)
