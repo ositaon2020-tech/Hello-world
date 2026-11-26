@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/6.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.1/ref/settings/
 """
-import os
+from decouple import config
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -21,10 +21,13 @@ print("BASE_DIR", BASE_DIR)
 # See https://docs.djangoproject.com/en/6.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-gag8b%m@&$7-$fyt*+4-6t&m3ug7on79!#ulunv4ruhm7lfsy-'
+SECRET_KEY = config("DJANGO_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = str(os.environ.get("DEBUG")).lower == "true" or True
+#DEBUG = str(os.environ.get("DEBUG")).lower == "true" or True
+DEBUG = config("DJANGO_DEBUG", Cast=bool)
+
+print("DEBUG", DEBUG, type(DEBUG))
 
 ALLOWED_HOSTS = [
     ".railway.app", #https://saas.prod.railway.app
