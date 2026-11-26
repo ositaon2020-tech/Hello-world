@@ -76,6 +76,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'cfehome.wsgi.application'
+ROOT_URLCONF = 'cfehome.urls'
 
 
 # Database
